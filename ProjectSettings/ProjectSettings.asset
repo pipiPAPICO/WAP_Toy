@@ -721,8 +721,8 @@ PlayerSettings:
   apiCompatibilityLevelPerPlatform: {}
   m_RenderingPath: 1
   m_MobileRenderingPath: 1
-  metroPackageName: WAP_Toy
-  metroPackageVersion: 
+  metroPackageName: WAPToy
+  metroPackageVersion: 1.0.0.0
   metroCertificatePath: 
   metroCertificatePassword: 
   metroCertificateSubject: 
@@ -730,7 +730,7 @@ PlayerSettings:
   metroCertificateNotAfter: 0000000000000000
   metroApplicationDescription: WAP_Toy
   wsaImages: {}
-  metroTileShortName: 
+  metroTileShortName: WAP_Toy
   metroTileShowName: 0
   metroMediumTileShowName: 0
   metroLargeTileShowName: 0
