@@ -6,7 +6,7 @@ public class Player : MonoBehaviour
 {
     public Rigidbody2D Rigidbody { get; private set; }
     public Vector2 inputVec;
-    float speed = 5.0f;
+    float speed = 3.0f;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class Player : MonoBehaviour
         if (Input.GetKeyUp(KeyCode.Space) == true) //스페이스바를 눌렀다 뗀 경우
         {
             //Rigidbody.AddForce(Vector2.up * speed);
-            Rigidbody.velocity = Vector2.up * speed; //위 방향으로 속도가 생김
+            Rigidbody.velocity = 3 * speed * Vector2.up; //위 방향으로 속도가 생김
             //재입력(더블+점프)방지
         }
 
