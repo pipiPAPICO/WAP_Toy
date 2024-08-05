@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy_dino : MonoBehaviour
+public class Enemy_chase : MonoBehaviour
 {
     // Start is called before the first frame update
     Rigidbody2D rigid;
     SpriteRenderer spriterenderer;
     Animator animator;
+    Transform Transform;
+    Transform player_tr;
     bool right;
     bool left;
     public int NextMove;
@@ -31,7 +33,9 @@ public class Enemy_dino : MonoBehaviour
         spriterenderer = GetComponent<SpriteRenderer>();
         rigid = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
-        Invoke("Think", 1); //애니메이션 적용 확인용으로 늦추기/디버깅 끝나면 그냥 Think() bear는 idle 애니메이션이 없는데 어카지
+        Transform = GetComponent<Transform>();
+        player_tr = GetComponent<Transform>
+        Invoke("Think", 0); //애니메이션 적용 확인용으로 늦추기/디버깅 끝나면 그냥 Think() bear는 idle 애니메이션이 없는데 어카지
     }
 
     private void Update()
