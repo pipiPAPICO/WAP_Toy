@@ -12,6 +12,8 @@ public class Enemy_sky : MonoBehaviour
     bool sky_right;
     bool sky_left;
     float sky_enemy_vel;
+    public bool Check_if_want_vertical;   //inspector에서 체크하면 수직(상하)로 다닐 것(체크 안 하면 좌우로 다님)
+    Vector2 nvec;
     void Start()
     {
     }
@@ -27,9 +29,17 @@ public class Enemy_sky : MonoBehaviour
 
     void fly()
     {
-        sky_rigid.velocity = new Vector2(0, sky_enemy_vel);
-        sky_enemy_vel = sky_enemy_vel * -1;
+        if (Check_if_want_vertical == true) //상하, y축으로 다님
+        {
+            nvec = new Vector2(sky_rigid.velocity.x, sky_enemy_vel);
+        }
+        else //if (Check_if_want_vertical == false) // 좌우, x축으로 다님
+        {
+            nvec = new Vector2(sky_enemy_vel, sky_rigid.velocity.y);
+        }
+            sky_enemy_vel = sky_enemy_vel * -1;
         Invoke("fly",1);
+
     }
 
     private void Update()
@@ -39,7 +49,9 @@ public class Enemy_sky : MonoBehaviour
     void FixedUpdate()
     {
         //이동속도
-        sky_rigid.velocity = new Vector2(sky_rigid.velocity.x, sky_enemy_vel);
+        sky_rigid.velocity = nvec;
+
+        
 
     }
 
