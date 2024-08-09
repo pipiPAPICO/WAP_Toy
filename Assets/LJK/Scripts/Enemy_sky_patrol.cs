@@ -6,12 +6,15 @@ using UnityEngine;
 public class Enemy_sky : MonoBehaviour
 {
     // Start is called before the first frame update
+    [Header("한 방향 이동시간")]        //유니티 인스펙터 창에서 조절 가능(코드 상으로는 -1곱해서 뒤집는 거 말고는 안 건드림)
+    [SerializeField][Range(-3f, 3f)] float flying_time = 1f;
+    [Header("이동속도")]        //유니티 인스펙터 창에서 조절 가능(코드 상으로는 -1곱해서 뒤집는 거 말고는 안 건드림)
+    [SerializeField][Range(-8f, 8f)] float sky_enemy_vel = -4f;
     Rigidbody2D sky_rigid;
     SpriteRenderer sky_spriterenderer;
     Animator sky_animator;
     bool sky_right;
     bool sky_left;
-    float sky_enemy_vel;
     public bool Check_if_want_vertical;   //inspector에서 체크하면 수직(상하)로 다닐 것(체크 안 하면 좌우로 다님)
     Vector2 nvec;
     void Start()
@@ -20,11 +23,10 @@ public class Enemy_sky : MonoBehaviour
 
     void Awake()
     {
-        sky_enemy_vel = -4; //가독성외에 필요없는 변수
         sky_spriterenderer = GetComponent<SpriteRenderer>();
         sky_rigid = GetComponent<Rigidbody2D>();
         sky_animator = GetComponent<Animator>();
-        Invoke("fly",1);
+        Invoke("fly",flying_time);
     }
 
     void fly()
@@ -38,7 +40,7 @@ public class Enemy_sky : MonoBehaviour
             nvec = new Vector2(sky_enemy_vel, sky_rigid.velocity.y);
         }
             sky_enemy_vel = sky_enemy_vel * -1;
-        Invoke("fly",1);
+        Invoke("fly", flying_time);
 
     }
 

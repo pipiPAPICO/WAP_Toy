@@ -43,11 +43,11 @@ public class Enemy_chase_sky : MonoBehaviour
     private void Update()
     {
         //이동 상태에 따른 애니메이션 전환
-        if (Vector2.Distance(Transform.position, player_tr.position) > 20)  //안 움직일 경우 
-        {
-            animator.SetBool("IsMove", false);  //애니메이터의 참거짓 값을 거짓으로
-        }
-        else { animator.SetBool("IsMove", true); }  //움직이는 경우 애니메이터의 참거짓 값을 참으로
+        //if (Vector2.Distance(Transform.position, player_tr.position) > 20)  //안 움직일 경우 
+        //{
+        //    animator.SetBool("IsMove", false);  //애니메이터의 참거짓 값을 거짓으로
+        //}
+        //else { animator.SetBool("IsMove", true); }  //움직이는 경우 애니메이터의 참거짓 값을 참으로
 
         //추격
         chase();

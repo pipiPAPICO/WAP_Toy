@@ -43,7 +43,7 @@ public class Enemy_chase_ground : MonoBehaviour
     private void Update()
     {
         //이동 상태에 따른 애니메이션 전환
-        if (Vector2.Distance(Transform.position, player_tr.position) > 20)  //안 움직일 경우 
+        if (Vector2.Distance(Transform.position, player_tr.position) > 15)  //안 쫓아가는 조건과 동일
         {
             animator.SetBool("IsMove", false);  //애니메이터의 참거짓 값을 거짓으로
         }
@@ -61,12 +61,12 @@ public class Enemy_chase_ground : MonoBehaviour
     void FixedUpdate()
     {
         //플레이어와 x좌표를 비교해 누가 좌우에 있는지에 따라 쫓아가기
-        if (transform.position.x < player_tr.transform.position.x)  //플레이어가 오른쪽에 있는 경우
-            if(chase_velocity < 0) { chase_velocity = chase_velocity * -1; } //속도가 왼쪽을 향하면 방향바꿈
-        { rigid.velocity = new Vector2(chase_velocity, rigid.velocity.y); }
-        if (transform.position.x > player_tr.transform.position.x)  //플레이어가 왼쪽에 있는 경우
-            if (chase_velocity > 0) { chase_velocity = chase_velocity * -1; } //속도가 오른쪽을 향하면 방향바꿈
-        { rigid.velocity = new Vector2( rigid.velocity.x, chase_velocity); }
+        if (Vector2.Distance(Transform.position, player_tr.position) < 15)  //쫓아갈 수 있는 범위 내인경우
+            if (transform.position.x < player_tr.transform.position.x)  //플레이어가 오른쪽에 있는 경우
+                 { rigid.velocity = new Vector2(chase_velocity,  rigid.velocity.y); }
+        if (Vector2.Distance(Transform.position, player_tr.position) < 15)
+            if (transform.position.x > player_tr.transform.position.x)  //플레이어가 왼쪽에 있는 경우
+                 { rigid.velocity = new Vector2(-chase_velocity, rigid.velocity.y); }
     }
 
 }
