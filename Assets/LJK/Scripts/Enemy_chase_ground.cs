@@ -64,9 +64,9 @@ public class Enemy_chase_ground : MonoBehaviour
         if (Vector2.Distance(Transform.position, player_tr.position) < 15)  //쫓아갈 수 있는 범위 내인경우
             if (transform.position.x < player_tr.transform.position.x)  //플레이어가 오른쪽에 있는 경우
                  { rigid.velocity = new Vector2(chase_velocity,  rigid.velocity.y); }
-        if (Vector2.Distance(Transform.position, player_tr.position) < 15)
-            if (transform.position.x > player_tr.transform.position.x)  //플레이어가 왼쪽에 있는 경우
-                 { rigid.velocity = new Vector2(-chase_velocity, rigid.velocity.y); }
+        //if (Vector2.Distance(Transform.position, player_tr.position) < 15)
+            //if (transform.position.x > player_tr.transform.position.x)  //플레이어가 왼쪽에 있는 경우
+             else    { rigid.velocity = new Vector2(-chase_velocity, rigid.velocity.y); }
     }
 
 }

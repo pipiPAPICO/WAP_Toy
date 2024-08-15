@@ -13,6 +13,7 @@ public class Enemy_sky : MonoBehaviour
     Rigidbody2D sky_rigid;
     SpriteRenderer sky_spriterenderer;
     Animator sky_animator;
+    int check_flip;
     bool sky_right;
     bool sky_left;
     public bool Check_if_want_vertical;   //inspector에서 체크하면 수직(상하)로 다닐 것(체크 안 하면 좌우로 다님)
@@ -38,6 +39,12 @@ public class Enemy_sky : MonoBehaviour
         else //if (Check_if_want_vertical == false) // 좌우, x축으로 다님
         {
             nvec = new Vector2(sky_enemy_vel, sky_rigid.velocity.y);
+            //속도가 바뀌기 전에 스프라이트 방향을 바꾸고 있으므로 이를 해소하기 위해 체크변수하나 쓰기
+            if (check_flip == 0) { check_flip++; }
+            else {
+                if (sky_spriterenderer.flipX == false) { sky_spriterenderer.flipX = true; }
+                else if (sky_spriterenderer.flipX == true) { sky_spriterenderer.flipX = false; }
+            }
         }
             sky_enemy_vel = sky_enemy_vel * -1;
         Invoke("fly", flying_time);
