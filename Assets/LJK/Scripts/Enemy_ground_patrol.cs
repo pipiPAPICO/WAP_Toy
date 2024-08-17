@@ -55,9 +55,11 @@ public class Enemy_ground : MonoBehaviour
         gr_rigid.velocity = new Vector2(gr_enemy_vel, 0);
 
         //이동로직(안 떨어지면서 다니기)
-        Vector2 frontVec = new Vector2(float_for_lay , gr_rigid.position.y);
-        Debug.DrawRay(frontVec, Vector3.down, Color.green);
-        RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down , 1, LayerMask.GetMask("Platform"));
+        Vector2 frontVec = new Vector2(float_for_lay , gr_rigid.position.y); //보간계수적용하기
+
+        Debug.DrawRay(frontVec, Vector3.down, Color.green); //잘 되고 있는지 확인하는 용도
+
+        RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down , 1, LayerMask.GetMask("Platform")); //실제 적용부분
         if (rayHit.collider == null)
         {
             gr_enemy_vel = gr_enemy_vel *-1;  //속도를 반대방향으로 바꾸기

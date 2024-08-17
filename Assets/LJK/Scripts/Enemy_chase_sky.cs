@@ -61,7 +61,7 @@ public class Enemy_chase_sky : MonoBehaviour
 
     void chase()
     {
-        if (Vector2.Distance(Transform.position, player_tr.position) < 20)  //플레이어에게까지의 거리를 계산, 거리가 20이내라면 그 위치로 서서히 다가감
+        if (Vector2.Distance(Transform.position, player_tr.position) < 10)  //플레이어에게까지의 거리를 계산, 거리가 10이내라면 그 위치로 서서히 다가감
             Transform.position = Vector2.MoveTowards(Transform.position, player_tr.position, chase_velocity * Time.deltaTime);  
                 
         else

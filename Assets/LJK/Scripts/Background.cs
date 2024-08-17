@@ -26,6 +26,6 @@ public class Background : MonoBehaviour
 
     private void LateUpdate()
     {
-        bg_transform.position = new Vector2 (player_tr.transform.position.x + 7, 0);
+        bg_transform.position = new Vector2 (player_tr.transform.position.x + 2, 0);
     }
 }
