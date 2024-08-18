@@ -38,7 +38,7 @@ public class Enemy_ground : MonoBehaviour
 
     private void Update()
     {
-        //이동로직을 위한 보간계수 조정
+        //이동로직을 위한 보간계수 조정(Raycast에 바로 소수점 넣을 수가 없음, Double로만 된다고 함)
         float_for_lay = gr_rigid.position.x + gr_enemy_vel * parameter_for_lay;
         //이동 상태에 따른 애니메이션 전환
         if (gr_enemy_vel== 0)  //안 움직일 경우 (x방향속도==0)
@@ -55,7 +55,7 @@ public class Enemy_ground : MonoBehaviour
         gr_rigid.velocity = new Vector2(gr_enemy_vel, 0);
 
         //이동로직(안 떨어지면서 다니기)
-        Vector2 frontVec = new Vector2(float_for_lay , gr_rigid.position.y); //보간계수적용하기
+        Vector2 frontVec = new Vector2(float_for_lay , gr_rigid.position.y); //보간계수적용하기(Raycast에 바로 소수점 넣을 수가 없음, Double로만 된다고 함)
 
         Debug.DrawRay(frontVec, Vector3.down, Color.green); //잘 되고 있는지 확인하는 용도
 
