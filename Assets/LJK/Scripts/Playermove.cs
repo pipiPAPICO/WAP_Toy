@@ -51,6 +51,12 @@ public class Playermove : MonoBehaviour
             anim.SetBool("isrunning", false);
         else
             anim.SetBool("isrunning", true);
+
+        //낙사
+        if (rigid.transform.position.y < -5)
+        {
+            SceneManager.LoadScene(stagelevel);
+        }
     }
     void FixedUpdate()
     {
@@ -71,6 +77,7 @@ public class Playermove : MonoBehaviour
             //확인용
             Debug.DrawRay(frontVec, Vector3.down, new Color(0, 1, 0));
             Debug.DrawRay(backVec,  Vector3.down, new Color(0, 1, 0));
+            Debug.DrawRay(rigid.position, Vector3.down, new Color(0, 1, 0));
 
             //앞에서 아래로
             RaycastHit2D FrayHit = Physics2D.Raycast(frontVec, Vector3.down, 1, LayerMask.GetMask("Platform"));
@@ -89,6 +96,16 @@ public class Playermove : MonoBehaviour
                 if (BrayHit.distance < 1f)
                 anim.SetBool("isJumping", false);
             }
+
+            //중앙에서 아래로
+            RaycastHit2D rayHit = Physics2D.Raycast(rigid.position, Vector3.down, 1, LayerMask.GetMask("Platform"));
+
+            if (rayHit.collider != null)
+            {
+                if (rayHit.distance < 1f)
+                    anim.SetBool("isJumping", false);
+            }
+
         }
     }
 
@@ -103,9 +120,9 @@ public class Playermove : MonoBehaviour
     public void Nextstage()
     {
         //stagelevel++;
-        if ((stagelevel < 1)) //스테이지가 2개인 경우(0,1)마지막 스테이지가 아닐 경우
+        if ((stagelevel < 2)) //스테이지가 3개인 경우(0,1,2)마지막 스테이지가 아닐 경우
         {
-            SceneManager.LoadScene(1);
+            SceneManager.LoadScene(stagelevel+1);
         }
         else //마지막 스테이지일 경우
         {
