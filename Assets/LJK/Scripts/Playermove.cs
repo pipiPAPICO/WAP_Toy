@@ -14,7 +14,7 @@ public class Playermove : MonoBehaviour
     public float jumpPower;
     float float_for_frontlay;
     float float_for_backlay;
-    public int stagelevel;  //몇 스테이지인지 플레이어한테 기록해놓기(유니티 inspector창이용)
+    public int stagelevel;  //몇 스테이지인지 플레이어한테 기록해놓기(유니티 inspector창 이용)
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
@@ -52,10 +52,10 @@ public class Playermove : MonoBehaviour
         else
             anim.SetBool("isrunning", true);
 
-        //낙사
+        //낙사한 경우
         if (rigid.transform.position.y < -5)
         {
-            SceneManager.LoadScene(stagelevel);
+            deathwarp(rigid.position.x);
         }
     }
     void FixedUpdate()
@@ -68,8 +68,10 @@ public class Playermove : MonoBehaviour
         else if (rigid.velocity.x < maxSpeed * (-1))
             rigid.velocity = new Vector2(maxSpeed * (-1), rigid.velocity.y);
 
-        if(rigid.velocity.y < 0)
+        if(rigid.velocity.y < 0)    //낙하 시 플랫폼 감지하여 점프상태 해제
         {
+            //플랫폼에서 점프안하고 떨어지는동안 점프방지
+            anim.SetBool("isJumping", true);
             //시작하는 지점을 앞뒤에 설정
             Vector2 frontVec = new Vector2(float_for_frontlay, rigid.position.y);
             Vector2 backVec  = new Vector2(float_for_backlay,  rigid.position.y);
@@ -111,16 +113,40 @@ public class Playermove : MonoBehaviour
 
     public void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.gameObject.tag == "Monster")
+        {
+            deathwarp(rigid.position.x);
+        }
         if (collision.gameObject.tag == "Finish")
         {
             Nextstage();
         }
         
     }
+
+    public void deathwarp(float playerx) //(죽은 상황에서) 근처 리스폰 포인트로 워프시키기
+    {
+        if (stagelevel == 0) { SceneManager.LoadScene(1); } //버그나면 다음 스테이지를 가시면 됩니다
+        if (stagelevel == 1)
+        {
+            if (playerx < 27)       { rigid.position = new Vector2(0, 3);  rigid.velocity = Vector2.zero; }
+            else if (playerx < 56)  { rigid.position = new Vector2(19, 2); rigid.velocity = Vector2.zero; }
+            else if (playerx < 200) { rigid.position = new Vector2(57, 2); rigid.velocity = Vector2.zero; } //끝까지
+            else { SceneManager.LoadScene(stagelevel + 1); } //버그난 경우 초기화
+        }
+        if (stagelevel == 2) 
+        {
+            if (playerx < 26)       { rigid.position = new Vector2(-2, 2); rigid.velocity = Vector2.zero; }
+            else if (playerx < 36)  { rigid.position = new Vector2(25, 5); rigid.velocity = Vector2.zero; }
+            else if (playerx < 55)  { rigid.position = new Vector2(36, 5); rigid.velocity = Vector2.zero; }
+            else if (playerx < 200) { rigid.position = new Vector2(54, 4); rigid.velocity = Vector2.zero; } //끝까지
+            else { SceneManager.LoadScene(stagelevel); } //버그난 경우 초기화
+        }
+    }
     public void Nextstage()
     {
         //stagelevel++;
-        if ((stagelevel < 2)) //스테이지가 3개인 경우(0,1,2)마지막 스테이지가 아닐 경우
+        if ((stagelevel < 2)) //스테이지가 3개인 상황(0,1,2)에서 마지막 스테이지가 아닐 경우
         {
             SceneManager.LoadScene(stagelevel+1);
         }

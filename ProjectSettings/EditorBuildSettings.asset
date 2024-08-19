@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/LJK/Scenes/LJKScene.unity
+    path: Assets/LJK/Scenes/0Tutroial.unity
     guid: 3fd5facf25480ae47aff7125351b23ca
   - enabled: 1
     path: Assets/LJK/Scenes/1stage.unity

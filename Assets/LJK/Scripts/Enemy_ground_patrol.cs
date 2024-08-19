@@ -17,6 +17,7 @@ public class Enemy_ground : MonoBehaviour
     bool gr_left;
     void Start()
     {
+        //몬스터 좌우로 오갈 때 스프라이트 뒤집을 때, 몬스터마다 스프라이트가 기본적으로 좌우를 보는게 달라서 세팅
         if (gr_spriterenderer.flipX == true)  //기본적으로 왼쪽 바라보는 적들/ 오른쪽 바라보는 스프라이트 수정한 경우
         {
             gr_right = false;
@@ -36,10 +37,18 @@ public class Enemy_ground : MonoBehaviour
         gr_animator = GetComponent<Animator>();
     }
 
+    void turnaround() //뒤돌아가기
+    {
+        gr_enemy_vel = gr_enemy_vel * -1;  //속도를 반대방향으로 바꾸기
+        if (gr_enemy_vel > 0) { gr_spriterenderer.flipX = gr_right; } //양의 방향으로 움직일 경우 스프라이트 뒤집기
+        else if (gr_enemy_vel < 0) { gr_spriterenderer.flipX = gr_left; } //음의 방향으로 움직일 경우 스프라이트 원래 방향 쓰기
+    }
+
     private void Update()
     {
         //이동로직을 위한 보간계수 조정(Raycast에 바로 소수점 넣을 수가 없음, Double로만 된다고 함)
-        float_for_lay = gr_rigid.position.x + gr_enemy_vel * parameter_for_lay;
+        float_for_lay = gr_rigid.position.x + (gr_enemy_vel * parameter_for_lay);
+
         //이동 상태에 따른 애니메이션 전환
         if (gr_enemy_vel== 0)  //안 움직일 경우 (x방향속도==0)
         {
@@ -62,12 +71,18 @@ public class Enemy_ground : MonoBehaviour
         RaycastHit2D rayHit = Physics2D.Raycast(frontVec, Vector3.down , 1, LayerMask.GetMask("Platform")); //실제 적용부분
         if (rayHit.collider == null)
         {
-            gr_enemy_vel = gr_enemy_vel *-1;  //속도를 반대방향으로 바꾸기
-            if (gr_enemy_vel >0) { gr_spriterenderer.flipX = gr_right; } //양의 방향으로 움직일 경우 스프라이트 뒤집기
-            else if (gr_enemy_vel <0) { gr_spriterenderer.flipX = gr_left; } //음의 방향으로 움직일 경우 스프라이트 원래 방향 쓰기
+            turnaround();    
         }
 
     }
 
+    public void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Monster")
+        {
+            turnaround();
+        }
+    }
 
-}
+
+    }
