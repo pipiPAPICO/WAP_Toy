@@ -3,12 +3,13 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Monster
   layers:
   - Default
   - TransparentFX
   - Ignore Raycast
-  - 
+  - Platform
   - Water
   - UI
   - 
@@ -38,6 +39,12 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: background
+    uniqueID: 3568010931
+    locked: 0
+  - name: fore_background
+    uniqueID: 4242060351
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
