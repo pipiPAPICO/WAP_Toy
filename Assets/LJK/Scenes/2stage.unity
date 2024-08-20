@@ -543,8 +543,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a78b0c30df2e4f14f8cc21d27908a0d8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  stagelevel: 1
-  player: {fileID: 0}
 --- !u!4 &556526669
 Transform:
   m_ObjectHideFlags: 0
@@ -28932,7 +28930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flying_time: 2.2
   sky_enemy_vel: -1
-  Check_if_want_vertical: 1
+  Check_if_want_vertical: 0
 --- !u!212 &1416133786
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -30785,7 +30783,7 @@ AudioListener:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2111994900}
-  m_Enabled: 0
+  m_Enabled: 1
 --- !u!20 &2111994902
 Camera:
   m_ObjectHideFlags: 0
@@ -31065,6 +31063,9 @@ MonoBehaviour:
   maxSpeed: 5
   jumpPower: 15
   stagelevel: 2
+  audio_stomp: {fileID: 8300000, guid: a6c21e434b8764995bc7b5b421e2dd6d, type: 3}
+  audio_jump: {fileID: 8300000, guid: 31473352b71bb482ca79e562969a7148, type: 3}
+  audio_door: {fileID: 8300000, guid: 7a6922112cbd94cb4a54b8b259ee8389, type: 3}
 --- !u!61 &2146904401
 BoxCollider2D:
   m_ObjectHideFlags: 0

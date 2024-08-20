@@ -17,7 +17,7 @@ public class Enemy_chase_sky : MonoBehaviour
     //public int chase_velocity;
     void Start()
     {
-        if (spriterenderer.flipX == true)  //기본적으로 왼쪽 바라보는 적들/ 오른쪽 바라보는 스프라이트 수정한 경우
+        if (spriterenderer.flipX == true)  //기본적으로 왼쪽 바라보게 세팅-오른쪽 바라보는 스프라이트 수정한 경우는 좌우 값 반전
         {
             right = false;
             left = true;
@@ -42,7 +42,7 @@ public class Enemy_chase_sky : MonoBehaviour
 
     private void Update()
     {
-        //이동 상태에 따른 애니메이션 전환
+        //이동 상태에 따른 애니메이션 전환 - 공중은 이게 필요가 없다, 애초에 idle로 쓸만한 스프라이트가 없어서 더 부자연스럽다
         //if (Vector2.Distance(Transform.position, player_tr.position) > 20)  //안 움직일 경우 
         //{
         //    animator.SetBool("IsMove", false);  //애니메이터의 참거짓 값을 거짓으로

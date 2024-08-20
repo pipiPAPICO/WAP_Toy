@@ -17,7 +17,8 @@ public class Enemy_chase_ground : MonoBehaviour
     //public int chase_velocity;
     void Start()
     {
-        if (spriterenderer.flipX == true)  //기본적으로 왼쪽 바라보는 적들/ 오른쪽 바라보는 스프라이트 수정한 경우
+        //몬스터 좌우로 오갈 때 스프라이트 뒤집을 때, 몬스터마다 스프라이트가 기본적으로 좌우를 보는게 달라서 세팅
+        if (spriterenderer.flipX == true)  //기본적으로 왼쪽 바라보게 세팅-오른쪽 바라보는 스프라이트 수정한 경우는 좌우 값 반전
         {
             right = false;
             left = true;

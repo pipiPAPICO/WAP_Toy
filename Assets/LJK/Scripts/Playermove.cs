@@ -15,6 +15,10 @@ public class Playermove : MonoBehaviour
     float float_for_frontlay;
     float float_for_backlay;
     public int stagelevel;  //몇 스테이지인지 플레이어한테 기록해놓기(유니티 inspector창 이용)
+    AudioSource audiosource;
+    public AudioClip audio_stomp;
+    public AudioClip audio_jump;
+    public AudioClip audio_door;
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
     Animator anim;
@@ -55,7 +59,16 @@ public class Playermove : MonoBehaviour
         //낙사한 경우
         if (rigid.transform.position.y < -5)
         {
+            //플레이어 재배치
             deathwarp(rigid.position.x);
+
+            //사망사운드 재생(안됨)
+            //audiosource.clip = audio_stomp;
+            //audiosource.Play();
+
+            //사망사운드 재생(안됨)
+            //audiosource.PlayOneShot(audio_stomp);
+
         }
     }
     void FixedUpdate()
