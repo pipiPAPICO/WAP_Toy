@@ -28930,7 +28930,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flying_time: 2.2
   sky_enemy_vel: -1
-  Check_if_want_vertical: 0
+  Check_if_want_vertical: 1
 --- !u!212 &1416133786
 SpriteRenderer:
   m_ObjectHideFlags: 0
